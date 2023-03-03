@@ -245,7 +245,7 @@ const Home: NextPage = () => {
         <hr className="border-1 h-px bg-gray-700 dark:bg-gray-700" />
         <ResizablePanel>
           <AnimatePresence mode="wait">
-            <motion.div className="my-10 space-y-10">
+            <motion.div className="my-10 space-y-10 mx-auto">
               {generatedTopics && (
                 <>
                   <div>
