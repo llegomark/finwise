@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Hello, I'm looking for advice or guidance on financial management about "${topic}". Please provide me with personalized advice or guidance based on my unique financial situation. I understand that you are a financial expert and that your advice is not a substitute for professional financial advice. However, I value your expertise and look forward to hearing your recommendations.`;
+  const prompt = `${topic}`;
 
   // Define an asynchronous function that sends a POST request to an API route and displays the response
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -193,7 +193,7 @@ const Home: NextPage = () => {
               rows={4}
               className="focus:shadow-outline mt-5 w-full rounded-lg bg-neutral-50 shadow-sm focus:outline-none"
               placeholder={
-                "Are you struggling with debt? Trying to save for a big purchase? Just looking for general financial advice? Whatever it may be, our AI-powered platform is here to help. Simply describe your financial situation and goals, and let our technology provide personalized guidance tailored to your unique needs."
+                "Are you facing challenges with debt repayment due to unfair debt collection practices by financing and lending companies? Are you trying to save for a big purchase while also managing your debt? Or are you simply seeking general financial advice? Our AI-powered platform is here to assist you. Describe your financial situation and objectives, and our technology will provide customized guidance specifically designed to meet your individual needs, including addressing unfair debt collection practices by financing and lending companies."
               }
               aria-label="Enter a theme, subject matter, or content focus. (Leave blank to generate a random passage.)"
             />
