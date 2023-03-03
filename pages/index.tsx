@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import LoadingDots from "../components/LoadingDots";
 import ResizablePanel from "../components/ResizablePanel";
 import Balancer from "react-wrap-balancer";
 import React from "react";
@@ -35,6 +34,7 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [topic, setTopic] = useState<string>("");
   const [generatedTopics, setGeneratedTopics] = useState<string>("");
+
   const finguidanceRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToFinguidance = () => {
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Hello, I'm looking for advice on debt and financial management. My current financial situation is as follows: ${topic}. I'm struggling to manage my finances and I'm looking for advice on how to improve my overall financial health. What steps can I take to reduce my debt load and get my finances back on track? Additionally, what strategies can I use to create a budget and start saving for my financial goals? Please provide me with personalized advice based on my unique financial situation. I understand that you are a financial expert and that your advice is not a substitute for professional financial advice. However, I value your expertise and look forward to hearing your recommendations.`;
+  const prompt = `Hello, I'm looking for advice or guidance on financial management about "${topic}". Please provide me with personalized advice or guidance based on my unique financial situation. I understand that you are a financial expert and that your advice is not a substitute for professional financial advice. However, I value your expertise and look forward to hearing your recommendations.`;
 
   // Define an asynchronous function that sends a POST request to an API route and displays the response
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -121,7 +121,7 @@ const Home: NextPage = () => {
 
   // This function limits the number of characters in a text area input
   const limitCharacters = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const maxCharacters = 500; // Set the maximum number of characters allowed
+    const maxCharacters = 400; // Set the maximum number of characters allowed
     const currentCharacters = e.target.value.length; // Get the current number of characters
 
     // Check if the current number of characters exceeds the maximum
@@ -181,8 +181,7 @@ const Home: NextPage = () => {
             </span>
             <p className="ml-3 text-left text-base leading-normal text-slate-900 sm:text-lg lg:text-lg">
               <Balancer>
-                Describe your financial problem in detail. Include income,
-                expenses, and debts if possible.
+                Tell us about your financial concerns or questions.
               </Balancer>
             </p>
           </div>
@@ -194,16 +193,16 @@ const Home: NextPage = () => {
               rows={4}
               className="focus:shadow-outline mt-5 w-full rounded-lg bg-neutral-50 shadow-sm focus:outline-none"
               placeholder={
-                "Tell us about your financial concerns or questions. Are you struggling with debt? Trying to save for a big purchase? Just looking for general financial advice? Whatever it may be, our AI-powered platform is here to help. Simply describe your financial situation and goals, and let our technology provide personalized guidance tailored to your unique needs."
+                "Are you struggling with debt? Trying to save for a big purchase? Just looking for general financial advice? Whatever it may be, our AI-powered platform is here to help. Simply describe your financial situation and goals, and let our technology provide personalized guidance tailored to your unique needs."
               }
               aria-label="Enter a theme, subject matter, or content focus. (Leave blank to generate a random passage.)"
             />
-            <p className="mt-2 text-right text-sm text-gray-500">
-              {topic.length}/500
+            <p className="mb-1 text-right text-sm text-gray-500">
+              {topic.length}/400
             </p>
             {!loading && (
               <button
-                className="mt-10 w-full rounded-lg bg-black px-4 py-2 text-base font-bold text-white transition-colors hover:bg-black/80"
+                className="w-full rounded-lg bg-black px-4 py-2 text-base font-bold text-white transition-colors hover:bg-black/80"
                 type="submit"
                 disabled={topic === ""}
               >
@@ -212,10 +211,10 @@ const Home: NextPage = () => {
             )}
             {loading && (
               <button
-                className="mt-10 w-full rounded-lg bg-black px-4 py-2 text-base text-white"
+                className="w-full rounded-lg bg-black px-4 py-2 text-base font-bold text-white"
                 disabled
               >
-                <LoadingDots color="white" style="large" />
+                Typing...
               </button>
             )}
           </form>
@@ -233,7 +232,7 @@ const Home: NextPage = () => {
                 <>
                   <div>
                     <h2 className="mx-auto max-w-4xl px-3 text-2xl font-bold text-slate-900 md:text-3xl lg:text-4xl">
-                      <Balancer>Financial Guidance Just for You</Balancer>
+                      <Balancer>Financial Guidance</Balancer>
                     </h2>
                   </div>
                   <div className="mx-auto flex max-w-xl flex-col items-center justify-center space-y-8 px-3">
