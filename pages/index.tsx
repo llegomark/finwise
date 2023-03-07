@@ -1,15 +1,12 @@
-import { AnimatePresence, motion } from "framer-motion";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import ResizablePanel from "../components/ResizablePanel";
 import Balancer from "react-wrap-balancer";
 import React from "react";
 import SocialIcon from "../components/SocialIcon";
-import UsageGuidelines from "../components/UsageGuidelines";
 
 // This defines the types of data that the API response should have
 interface ResponseType {
@@ -198,7 +195,8 @@ const Home: NextPage = () => {
               </span>
               <p className="ml-3 text-left text-base leading-normal text-slate-900 sm:text-lg lg:text-lg">
                 <Balancer>
-                  Tell us about your financial concerns or questions.
+                  Please share with us any financial worries or inquiries you
+                  may have, whether in English or Filipino.
                 </Balancer>
               </p>
             </div>
@@ -214,7 +212,7 @@ const Home: NextPage = () => {
                 }
                 aria-label="Enter a theme, subject matter, or content focus. (Leave blank to generate a random passage.)"
               />
-              <p className="mb-1 text-right text-sm text-gray-500">
+              <p className="mb-1 text-right text-xs text-gray-500">
                 {topic.length}/400
               </p>
               {!loading && (
@@ -243,57 +241,52 @@ const Home: NextPage = () => {
           toastOptions={{ duration: 2000 }}
         />
         <hr className="border-1 h-px bg-gray-700 dark:bg-gray-700" />
-        <ResizablePanel>
-          <AnimatePresence mode="wait">
-            <motion.div className="my-10 space-y-10 mx-auto">
-              {generatedTopics && (
-                <>
-                  <div>
-                    <h2 className="mx-auto max-w-4xl px-3 text-2xl font-bold text-slate-900 md:text-3xl lg:text-4xl">
-                      <Balancer>Financial Guidance</Balancer>
-                    </h2>
-                  </div>
-                  <div className="mx-auto flex max-w-xl flex-col items-center justify-center space-y-8 px-3">
-                    <div
-                      className="relative transform cursor-pointer rounded-xl border bg-sky-200 p-4 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-100 hover:shadow-lg"
-                      onClick={() => {
-                        const financialguidance = `${generatedTopics}`;
-                        navigator.clipboard
-                          .writeText(financialguidance)
-                          .then(() => {
-                            toast.success("Financial Guidance Copied", {});
-                          })
-                          .catch((error) => {
-                            console.error(error);
-                          });
-                      }}
-                    >
-                      <p
-                        className="text-start text-base leading-normal text-slate-900 sm:text-lg lg:text-lg"
-                        ref={finguidanceRef}
-                        aria-label="Financial Guidance"
-                      >
-                        {lines.map((line, index) => (
-                          <React.Fragment key={index}>
-                            {index === 0 ? line : line}
-                            <br />
-                          </React.Fragment>
-                        ))}
+        <div className="my-10 mx-auto space-y-10">
+          {generatedTopics && (
+            <>
+              <div>
+                <h2 className="mx-auto max-w-4xl px-3 text-2xl font-bold text-slate-900 md:text-3xl lg:text-4xl">
+                  <Balancer>Financial Guidance</Balancer>
+                </h2>
+              </div>
+              <div className="mx-auto flex max-w-xl flex-col items-center justify-center space-y-8 px-3">
+                <div
+                  className="relative transform cursor-pointer rounded-xl border bg-sky-200 p-4 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-100 hover:shadow-lg"
+                  onClick={() => {
+                    const financialguidance = `${generatedTopics}`;
+                    navigator.clipboard
+                      .writeText(financialguidance)
+                      .then(() => {
+                        toast.success("Financial Guidance Copied", {});
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                      });
+                  }}
+                >
+                  <p
+                    className="text-start text-base leading-normal text-slate-900 sm:text-lg lg:text-lg"
+                    ref={finguidanceRef}
+                    aria-label="Financial Guidance"
+                  >
+                    {lines.map((line, index) => (
+                      <React.Fragment key={index}>
+                        {index === 0 ? line : line}
                         <br />
-                        <span className="font-bold">Hint: </span>
-                        <span>
-                          Ready to copy the AI-Powered Financial Advice? Click
-                          on the box to copy it to your clipboard.
-                        </span>
-                      </p>
-                    </div>
-                    <UsageGuidelines />
-                  </div>
-                </>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </ResizablePanel>
+                      </React.Fragment>
+                    ))}
+                    <br />
+                    <span className="font-bold">Hint: </span>
+                    <span>
+                      Ready to copy the AI-Powered Financial Advice? Click on
+                      the box to copy it to your clipboard.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
       </main>
       <Footer />
     </div>
